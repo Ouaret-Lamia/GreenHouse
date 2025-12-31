@@ -1,6 +1,8 @@
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import { Suspense, useEffect, useState } from 'react'
+import { KeyboardMovement } from './KeyboardMovement'
+import { PointerLockControls } from '@react-three/drei'
 import GLB from './components/GLB'
 
 export default function App() {
@@ -8,20 +10,20 @@ export default function App() {
   const [loadDecor, setLoadDecor] = useState(false)
 
   // Load in phases (VERY IMPORTANT)
-  // useEffect(() => {
-  //   const t1 = setTimeout(() => setLoadStructure(true), 1000)
-  //   const t2 = setTimeout(() => setLoadDecor(true), 2500)
+  useEffect(() => {
+    const t1 = setTimeout(() => setLoadStructure(true), 1000)
+    const t2 = setTimeout(() => setLoadDecor(true), 2500)
 
-  //   return () => {
-  //     clearTimeout(t1)
-  //     clearTimeout(t2)
-  //   }
-  // }, [])
+    return () => {
+      clearTimeout(t1)
+      clearTimeout(t2)
+    }
+  }, [])
 
   return (
     <Canvas
       dpr={1}
-      frameloop="demand"
+      frameloop="always"
       shadows={false}
       gl={{
         antialias: false,
@@ -38,6 +40,10 @@ export default function App() {
       <ambientLight intensity={3} />
       <directionalLight position={[-1, 10, 5]} intensity={15} />
 
+      {/* 2. ADD THESE COMPONENTS HERE */}
+      <KeyboardMovement />
+      <PointerLockControls />
+
       {/* PHASE 1 — ENVIRONMENT */}
       <Suspense fallback={null}>
         <GLB url="/models/scene.glb" />
@@ -48,11 +54,15 @@ export default function App() {
         <Suspense fallback={null}>
           <GLB url="/models/Stairs.glb" />
           <GLB url="/models/Etageres.glb" />
+          <GLB url="/models/Tree.glb" />
+          <GLB url="/models/Banc.glb" />
+          <GLB url="/models/PlanteDeco.glb" />
+          <GLB url="/models/Cadres.glb" /> 
         </Suspense>
       )}
 
       {/* PHASE 3 — DECORATION */}
-      {/* {loadDecor && (
+      {loadDecor && (
         <Suspense fallback={null}>
           <GLB url="/flowers/Room3-Flower1.glb" />
           <GLB url="/flowers/Room3-Flower2.glb" />
@@ -62,28 +72,26 @@ export default function App() {
           <GLB url="/flowers/Room3-Flower6.glb" />
           <GLB url="/flowers/Room3-Flower7.glb" />
           <GLB url="/flowers/Room3-Flower8.glb" />
-          <GLB url="/flowers/Room3-Flower10(Petunias).glb" />
-          <GLB url="/flowers/Room3-Flower11(Marigold).glb" />
+          {/* <GLB url="/flowers/Room3-Flower9-Tawny-Daylily.glb" /> */}
+          <GLB url="/flowers/Room3-Flower10-Petunias.glb" />
+          <GLB url="/flowers/Room3-Flower11-Marigold.glb" />
+          {/* <GLB url="/flowers/Room3-Flower12-Pompom-Chrysanthemur.glb" /> */}
+           
         </Suspense>
-      )} */}
+      )}
 
-      <OrbitControls enableDamping target={[0,5,10]} />
+      {/* <OrbitControls enableDamping target={[0,5,10]} /> */}
+
     </Canvas>
   )
 }
 
-      {/* <GLB url="/models/Etageres.glb" /> */}
 
       {/* <GLB url="/models/Lampe.glb" />
       <GLB url="/models/Banc.glb" />
       <GLB url="/models/PlanteDeco.glb" />
-      <GLB url="/models/Cadres.glb" /> */}
+      <GLB url="/models/Cadres.glb" /> 
       
-      {/* <GLB url="/models/Stairs.glb" />
-      <GLB url="/models/scene.glb" /> */}
-      
-      {/* <GLB url="/models/Tree.glb" /> */}
-
       {/* <GLB url="/flowers/Room3-Flower1.glb" />
       <GLB url="/flowers/Room3-Flower2.glb" />
       <GLB url="/flowers/Room3-Flower3.glb" />
