@@ -1,15 +1,52 @@
 import { useGLTF } from '@react-three/drei'
+import { useEffect, useMemo } from 'react'
 
 export default function GLB({ url }) {
   const { scene } = useGLTF(url)
+
+  useEffect(() => {
+    scene.traverse((obj) => {
+      if (obj.isMesh) {
+        // PERFORMANCE OPTIMIZATIONS
+        obj.castShadow = false
+        obj.receiveShadow = false
+
+        // Freeze transforms (static objects)
+        obj.matrixAutoUpdate = false
+        obj.updateMatrix()
+
+        // Reduce material cost
+        if (obj.material) {
+          obj.material.metalness = 0
+          obj.material.roughness = 1
+
+          // Disable heavy maps if not needed
+          obj.material.normalMap = null
+          obj.material.roughnessMap = null
+          obj.material.metalnessMap = null
+        }
+      }
+    })
+  }, [scene])
+
+  // Dispose when unmounted (prevents GPU memory leaks)
+  useEffect(() => {
+    return () => {
+      scene.traverse((obj) => {
+        if (obj.geometry) obj.geometry.dispose()
+        if (obj.material) {
+          if (Array.isArray(obj.material)) {
+            obj.material.forEach((m) => m.dispose())
+          } else {
+            obj.material.dispose()
+          }
+        }
+      })
+    }
+  }, [scene])
+
   return <primitive object={scene} />
 }
 
-useGLTF.preload('/models/scene.glb')
-useGLTF.preload('/models/Banc.glb')
-useGLTF.preload('/models/Cadres.glb')
-useGLTF.preload('/models/Etageres.glb')
-useGLTF.preload('/models/Lampe.glb')
-useGLTF.preload('/models/PlanteDeco.glb')
-useGLTF.preload('/models/Stairs.glb')
-useGLTF.preload('/models/Tree.glb')
+// ❌ DO NOT preload everything
+// useGLTF.preload('/models/scene.glb') ← only preload critical assets if needed
