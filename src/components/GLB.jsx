@@ -1,7 +1,7 @@
 import { useGLTF } from '@react-three/drei'
 import { useEffect, useMemo } from 'react'
 
-export default function GLB({ url }) {
+export default function GLB({ url, onClick }) {
   const { scene } = useGLTF(url)
 
   useEffect(() => {
@@ -45,7 +45,12 @@ export default function GLB({ url }) {
     }
   }, [scene])
 
-  return <primitive object={scene} />
+  return (<primitive object={scene} 
+  onClick={(e) => {
+    e.stopPropagation();
+    if(onClick) onClick();
+  }}
+  />)
 }
 
 // ❌ DO NOT preload everything
