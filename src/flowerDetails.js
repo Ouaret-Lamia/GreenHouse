@@ -10,6 +10,18 @@ export const flowerData = {
     fact: "Roses have been cultivated for more than 5,000 years."
   },
 
+  "Room4-RedRose.glb": {
+    name: "Red Rose",
+    scientificName: "Rosa rubiginosa",
+    family: "Rosaceae",
+    origin: "Asia",
+    language: "Enduring love, passion, and respect",
+    care: "Needs 6–8 hours of sunlight and well-drained soil.",
+    info: "Red roses have symbolized deep love and romance for centuries.",
+    fact: "Roses have been cultivated for more than 5,000 years."
+  },
+
+
   "Room1-YellowRose.glb": {
     name: "Yellow Rose",
     scientificName: "Rosa foetida",
@@ -53,6 +65,18 @@ export const flowerData = {
     info: "Recognizable by its dark center and bright yellow petals.",
     fact: "It is the state flower of Maryland, USA."
   },
+
+  "Room4-BlackEyedSusan.glb": {
+    name: "Black-Eyed Susan",
+    scientificName: "Rudbeckia hirta",
+    family: "Asteraceae",
+    origin: "North America",
+    language: "Encouragement and motivation",
+    care: "Low-maintenance, prefers full sun.",
+    info: "Recognizable by its dark center and bright yellow petals.",
+    fact: "It is the state flower of Maryland, USA."
+  },
+
 
   "Room1-Tulip.glb": {
     name: "Tulip",
@@ -184,5 +208,135 @@ export const flowerData = {
     care: "Full sun and cool soil.",
     info: "Daffodils are among the first flowers of spring.",
     fact: "They are toxic if ingested."
+  },
+    "Room2-SulfurCosmos.glb": {
+    name: "Sulfur Cosmos",
+    scientificName: "Cosmos sulphureus",
+    family: "Asteraceae",
+    origin: "Mexico",
+    language: "Harmony and joy",
+    care: "Full sun, drought-tolerant, minimal maintenance.",
+    info: "Sulfur cosmos are bright orange-yellow flowers that attract butterflies.",
+    fact: "They thrive in poor soil where many plants struggle."
+  },
+
+  "Room2-SunFlower.glb": {
+    name: "Sunflower",
+    scientificName: "Helianthus annuus",
+    family: "Asteraceae",
+    origin: "North America",
+    language: "Adoration, loyalty, and longevity",
+    care: "Full sun with regular watering.",
+    info: "Sunflowers are known for turning their heads toward the sun.",
+    fact: "Some sunflower varieties can grow over 3 meters tall."
+  },
+
+  "Room2-MothOrchid.glb": {
+    name: "Moth Orchid",
+    scientificName: "Phalaenopsis",
+    family: "Orchidaceae",
+    origin: "Southeast Asia",
+    language: "Love, beauty, and refinement",
+    care: "Indirect light, high humidity, weekly watering.",
+    info: "Moth orchids are among the most popular indoor orchids.",
+    fact: "Their flowers can last up to three months."
+  },
+
+  "Room2-Hydrangea.glb": {
+    name: "Hydrangea",
+    scientificName: "Hydrangea macrophylla",
+    family: "Hydrangeaceae",
+    origin: "Japan",
+    language: "Gratitude and heartfelt emotions",
+    care: "Partial shade, consistently moist soil.",
+    info: "Hydrangea flower color can change based on soil pH.",
+    fact: "Acidic soil produces blue flowers, alkaline soil produces pink."
+  },
+
+  "Room2-OrangeCrush.glb": {
+    name: "Orange Crush",
+    scientificName: "Rosa 'Orange Crush'",
+    family: "Rosaceae",
+    origin: "Cultivar (Garden Hybrid)",
+    language: "Energy, enthusiasm, and fascination",
+    care: "Full sun, well-drained soil, regular pruning.",
+    info: "Orange Crush roses are known for their vibrant orange petals.",
+    fact: "Orange roses symbolize attraction and excitement."
+  },
+
+  "Room2-BrightEyes.glb": {
+    name: "Bright Eyes",
+    scientificName: "Rosa 'Bright Eyes'",
+    family: "Rosaceae",
+    origin: "Cultivar (Garden Hybrid)",
+    language: "Cheerfulness and curiosity",
+    care: "Full sun and moderate watering.",
+    info: "Bright Eyes roses feature pale petals with a striking red center.",
+    fact: "They are especially attractive to pollinators."
+  },
+    "Room4-OrnithogalumDubium.glb": {
+    name: "Ornithogalum Dubium",
+    scientificName: "Ornithogalum dubium",
+    family: "Asparagaceae",
+    origin: "South Africa",
+    language: "Purity and optimism",
+    care: "Bright light, well-drained soil, moderate watering.",
+    info: "This plant is known for its star-shaped orange flowers.",
+    fact: "It is often called the Sun Star due to its vibrant color."
+  },
+
+  "Room4-Carnations.glb": {
+    name: "Carnation",
+    scientificName: "Dianthus caryophyllus",
+    family: "Caryophyllaceae",
+    origin: "Mediterranean region",
+    language: "Fascination and admiration",
+    care: "Full sun, well-drained soil, regular deadheading.",
+    info: "Carnations are long-lasting flowers commonly used in bouquets.",
+    fact: "Different carnation colors carry different meanings."
+  },
+
+  "Room4-HybridLily.glb": {
+    name: "Hybrid Lily",
+    scientificName: "Lilium (Hybrid)",
+    family: "Liliaceae",
+    origin: "Northern Hemisphere",
+    language: "Purity and devotion",
+    care: "Full sun to partial shade, moist well-drained soil.",
+    info: "Hybrid lilies are prized for their large, fragrant blooms.",
+    fact: "Some lily hybrids can grow over 1.5 meters tall."
+  },
+
+  "Room1-Myosotis.glb": {
+    name: "Myosotis (Forget-Me-Not)",
+    scientificName: "Myosotis",
+    family: "Boraginaceae",
+    origin: "Europe and Asia",
+    language: "True love and remembrance",
+    care: "Partial shade, consistently moist soil.",
+    info: "Forget-me-nots produce small blue flowers with yellow centers.",
+    fact: "They are associated with memory and lasting bonds."
+  },
+
+  "Room1-SaffronCrocus.glb": {
+    name: "Saffron Crocus",
+    scientificName: "Crocus sativus",
+    family: "Iridaceae",
+    origin: "Greece",
+    language: "Joy and abundance",
+    care: "Full sun, dry summers, well-drained soil.",
+    info: "Saffron is harvested from the flower’s delicate red stigmas.",
+    fact: "It takes about 150 flowers to produce one gram of saffron."
+  },
+
+  "Room3-PompomChrysanthemum.glb": {
+    name: "Pompom Chrysanthemum",
+    scientificName: "Chrysanthemum morifolium",
+    family: "Asteraceae",
+    origin: "East Asia",
+    language: "Loyalty and longevity",
+    care: "Full sun, regular watering, well-drained soil.",
+    info: "Pompom chrysanthemums have dense, spherical blooms.",
+    fact: "Chrysanthemums are symbols of long life in many cultures."
   }
 };

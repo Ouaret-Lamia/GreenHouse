@@ -77,34 +77,23 @@ export default function App() {
         <GLB url="/models/Walls.glb" />
       </Suspense>
 
-      {/* PHASE 2 — STRUCTURE */}
+      {/* PHASE 2 — STRUCTURE  */}
       {loadStructure && (
         <Suspense fallback={null}>
           <GLB url="/models/Stairs.glb" />
-          <GLB url="/models/Etageres.glb" />
+          <GLB url="/models/etagers-v1.glb" />
           <GLB url="/models/Tree.glb" />
           <GLB url="/models/Banc.glb" />
           <GLB url="/models/PlanteDeco.glb" />
           <GLB url="/models/Cadres.glb" />
           <GLB url="/models/Lampe.glb" /> 
+          <GLB url="/flowers/Room2-Flower4-Deco.glb" />
         </Suspense>
       )}
 
       {/* PHASE 3 — DECORATION */}
       {loadDecor && (
         <Suspense fallback={null}>
-          {/* <GLB url="/flowers/Room3-Flower1.glb" />
-          <GLB url="/flowers/Room3-Flower2.glb" />
-          <GLB url="/flowers/Room3-Flower3.glb" />
-          <GLB url="/flowers/Room3-Flower4.glb" />
-          <GLB url="/flowers/Room3-Flower5.glb" />
-          <GLB url="/flowers/Room3-Flower6.glb" />
-          <GLB url="/flowers/Room3-Flower7.glb" />
-          <GLB url="/flowers/Room3-Flower8.glb" /> */}
-          {/* <GLB url="/flowers/Room3-Flower9-Tawny-Daylily.glb" /> */}
-          {/* <GLB url="/flowers/Room3-Flower10-Petunias.glb" />
-          <GLB url="/flowers/Room3-Flower11-Marigold.glb" /> */}
-          {/* <GLB url="/flowers/Room3-Flower12-Pompom-Chrysanthemur.glb" /> */}
           {Object.keys(flowerData).map((filename) => ((
             <FlowerGroup 
               key={filename} 
@@ -113,23 +102,6 @@ export default function App() {
               onSelect={(file) => setSelectedFlower(flowerData[file])}
             />
           )))}
-          {/* <GLB url="/flowers/Room1-Flower2.glb" />
-          <GLB url="/flowers/Room1-Flower3.glb" />
-          <GLB url="/flowers/Room1-Flower4.glb" />
-          <GLB url="/flowers/Room1-Flower5.glb" /> */}
-          {/* <GLB url="/flowers/Room1-Flower6.glb" /> */}
-          {/* <GLB url="/flowers/Room1-Flower7.glb" />
-          <GLB url="/flowers/Room1-Flower8.glb" />
-          <GLB url="/flowers/Room4-Flower1.glb" />
-          <GLB url="/flowers/Room4-Flower2.glb" />
-          <GLB url="/flowers/Room4-Flower3.glb" />
-          <GLB url="/flowers/Room4-Flower4.glb" />
-          <GLB url="/flowers/Room4-Flower5.glb" />
-          <GLB url="/flowers/Room4-Flower6.glb" />
-          <GLB url="/flowers/Room4-Flower7-Rosebud.glb" />
-          <GLB url="/flowers/Room4-Flower8-Sakura-tree.glb" />
-          <GLB url="/flowers/Room4-Flower9-Hibiscus-pink.glb" /> */}
-          
            
         </Suspense>
       )}
@@ -146,14 +118,4 @@ export default function App() {
       <GLB url="/models/Banc.glb" />
       <GLB url="/models/PlanteDeco.glb" />
       <GLB url="/models/Cadres.glb" /> 
-      
-      {/* <GLB url="/flowers/Room3-Flower1.glb" />
-      <GLB url="/flowers/Room3-Flower2.glb" />
-      <GLB url="/flowers/Room3-Flower3.glb" />
-      <GLB url="/flowers/Room3-Flower4.glb" />
-      <GLB url="/flowers/Room3-Flower5.glb" />
-      <GLB url="/flowers/Room3-Flower6.glb" />
-      <GLB url="/flowers/Room3-Flower7.glb" />
-      <GLB url="/flowers/Room3-Flower8.glb" />
-      <GLB url="/flowers/Room3-Flower9.glb" />
-      <GLB url="/flowers/Room3-Flower10(Petunias).glb" /> */}
+      <GLB url="/models/Etageres.glb" /> */}
