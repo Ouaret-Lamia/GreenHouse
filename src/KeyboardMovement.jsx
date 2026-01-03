@@ -8,29 +8,24 @@ const floorRaycaster = new THREE.Raycaster()
 export function KeyboardMovement({ onSelectFlower, playerRef }) {
   const { camera, raycaster, scene } = useThree()
   const keys = useRef({})
-  const speed = 0.4 // Adjust walking speed here
-  const playerHeight = 10 // Height of the camera eyes from the floor
+  const speed = 0.4 
+  const playerHeight = 10 
 
   useEffect(() => {
     // 1. INPUT LISTENERS
     const down = (e) => (keys.current[e.code] = true)
     const up = (e) => (keys.current[e.code] = false)
 
-    // 2. FPS CLICK LOGIC (Center of screen)
+    // 2. CLICK LOGIC
     const handleMouseClick = () => {
-      // Point the raycaster at the center crosshair
       raycaster.setFromCamera({ x: 0, y: 0 }, camera)
-
       const intersects = raycaster.intersectObjects(scene.children, true)
 
       if (intersects.length > 0) {
         let target = intersects[0].object
-        
-        // Find the group that contains the filename (from FlowerGroup)
         while (target.parent && !target.userData.filename) {
           target = target.parent
         }
-
         if (target.userData.filename && onSelectFlower) {
           onSelectFlower(target.userData.filename)
         }
@@ -48,10 +43,11 @@ export function KeyboardMovement({ onSelectFlower, playerRef }) {
     }
   }, [camera, raycaster, scene, onSelectFlower])
 
-  useFrame(() => {
+  useFrame((state) => {
+    const { camera } = state
+    
     // 3. HORIZONTAL MOVEMENT
     const direction = new THREE.Vector3()
-
     if (keys.current.KeyW || keys.current.ArrowUp) direction.z -= 1
     if (keys.current.KeyS || keys.current.ArrowDown) direction.z += 1
     if (keys.current.KeyA || keys.current.ArrowLeft) direction.x -= 1
@@ -60,29 +56,29 @@ export function KeyboardMovement({ onSelectFlower, playerRef }) {
     if (direction.length() > 0) {
       direction.normalize()
       direction.applyQuaternion(camera.quaternion)
-      direction.y = 0 // Keep the player on the ground plane
+      direction.y = 0 
       direction.multiplyScalar(speed)
       camera.position.add(direction)
     }
 
     // 4. STAIRS AND FLOOR DETECTION
-    // Start the ray slightly above the player's current head height
+    // 
     const rayOrigin = new THREE.Vector3(camera.position.x, camera.position.y + 10, camera.position.z)
     floorRaycaster.set(rayOrigin, new THREE.Vector3(0, -1, 0))
 
     const floorIntersections = floorRaycaster.intersectObjects(scene.children, true)
 
     if (floorIntersections.length > 0) {
-      // Find the first surface below us
       const groundHeight = floorIntersections[0].point.y
       const targetHeight = groundHeight + playerHeight
       
-      // Smoothly adjust the camera height (Lerp) to climb steps
-      camera.position.y = THREE.MathUtils.lerp(camera.position.y, targetHeight, 0.15)
+      // ✅ FIXED: Use .setY() as a function, not an assignment
+      // ✅ FIXED: Removed the duplicate 'if (intersects.length > 0)' block
+      const nextY = THREE.MathUtils.lerp(camera.position.y, targetHeight, 0.15)
+      camera.position.setY(nextY) 
     }
 
     // 5. UPDATE PLAYER REFERENCE
-    // This allows FlowerGroup.jsx to know where you are for distance loading
     if (playerRef) {
       playerRef.current = camera
     }

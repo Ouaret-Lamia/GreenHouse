@@ -8,18 +8,19 @@ import GLB from './GLB'
 export function FlowerGroup({ filename, playerRef, onSelect }) {
   const { scene } = useGLTF(`/flowers/${filename}`)
   const [isVisible, setIsVisible] = useState(false)
-  const center = useRef(new THREE.Vector3())
 
   // Compute center once
-  useMemo(() => {
+  const centerPoint = useMemo(() => {
     const box = new THREE.Box3().setFromObject(scene)
-    box.getCenter(center.current)
+    const v = new THREE.Vector3()
+    box.getCenter(v)
+    return v
   }, [scene])
 
   // Distance-based visibility
   useFrame(() => {
     if (!playerRef.current) return
-    const distance = playerRef.current.position.distanceTo(center.current)
+    const distance = playerRef.current.position.distanceTo(centerPoint)
 
     if (distance < 47 && !isVisible) setIsVisible(true)
     if (distance > 50 && isVisible) setIsVisible(false)
