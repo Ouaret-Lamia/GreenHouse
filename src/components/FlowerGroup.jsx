@@ -21,7 +21,7 @@ export function FlowerGroup({ filename, playerRef, onSelect }) {
     if (!playerRef.current) return
     const distance = playerRef.current.position.distanceTo(center.current)
 
-    if (distance < 40 && !isVisible) setIsVisible(true)
+    if (distance < 47 && !isVisible) setIsVisible(true)
     if (distance > 50 && isVisible) setIsVisible(false)
   })
 

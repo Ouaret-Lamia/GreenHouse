@@ -10,12 +10,12 @@ import { FlowerGroup } from './components/FlowerGroup'
 import { useRef } from 'react'
 import { Environment } from '@react-three/drei'
 import * as THREE from 'three'
-
 export default function App() {
   const [loadStructure, setLoadStructure] = useState(false)
   const [loadDecor, setLoadDecor] = useState(false)
   const [selectedFlower, setSelectedFlower] = useState(null)
   const playerRef = useRef()
+  const fountainRef = useRef()
   // Load in phases (VERY IMPORTANT)
   useEffect(() => {
     const t1 = setTimeout(() => setLoadStructure(true), 1000)
@@ -65,7 +65,7 @@ export default function App() {
       {/* 3. The "Sun" - Positioned above the dome hole */}
       <directionalLight
       position={[10,80,10]}
-       intensity={1.5}
+       intensity={2}
        castShadow
        shadow-mapSize={[2048, 2048]}>
         <orthographicCamera
@@ -103,7 +103,9 @@ export default function App() {
           <GLB url="/flowers/Room2-Flower4-Deco.glb" />
           <GLB url="/flowers/Room3-Flower6Deco.glb" />
           <GLB url="/flowers/Room4-Flower10-deco.glb" />
-        </Suspense>
+          <GLB url="/models/Deco.glb" />
+          <GLB url="/models/Fountain.glb"/>
+       </Suspense>
       )}
 
       {/* PHASE 3 — DECORATION */}
@@ -133,8 +135,4 @@ export default function App() {
 }
 
 
-      {/* <GLB url="/models/Lampe.glb" />
-      <GLB url="/models/Banc.glb" />
-      <GLB url="/models/PlanteDeco.glb" />
-      <GLB url="/models/Cadres.glb" /> 
-      <GLB url="/models/Etageres.glb" /> */}
+     
