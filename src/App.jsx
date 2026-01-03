@@ -15,7 +15,6 @@ export default function App() {
   const [loadDecor, setLoadDecor] = useState(false)
   const [selectedFlower, setSelectedFlower] = useState(null)
   const playerRef = useRef()
-  const fountainRef = useRef()
   // Load in phases (VERY IMPORTANT)
   useEffect(() => {
     const t1 = setTimeout(() => setLoadStructure(true), 1000)

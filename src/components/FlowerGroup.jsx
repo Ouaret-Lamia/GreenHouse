@@ -1,7 +1,7 @@
 // src/components/FlowerGroup.jsx
 import { useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
-import { useState, useRef, useMemo, useEffect } from 'react'
+import { useState, useRef, useMemo} from 'react'
 import * as THREE from 'three'
 import GLB from './GLB'
 
