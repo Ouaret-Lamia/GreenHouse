@@ -1,13 +1,15 @@
 import { Canvas } from '@react-three/fiber'
-// import { OrbitControls } from '@react-three/drei'
+import { Bloom, EffectComposer, Vignette } from '@react-three/postprocessing'
 import { Suspense, useEffect, useState } from 'react'
 import { KeyboardMovement } from './KeyboardMovement'
-import { PointerLockControls } from '@react-three/drei'
+import {PointerLockControls } from '@react-three/drei'
 import GLB from './components/GLB'
 import { flowerData } from './flowerDetails' // Import the new file
 import { FlowerInfo } from './components/FlowerInfo'
 import { FlowerGroup } from './components/FlowerGroup'
 import { useRef } from 'react'
+import { Environment } from '@react-three/drei'
+import * as THREE from 'three'
 
 export default function App() {
   const [loadStructure, setLoadStructure] = useState(false)
@@ -43,35 +45,46 @@ export default function App() {
         zIndex: 10
       }} />
 
-      <FlowerInfo 
-        flower={selectedFlower} 
-        onClose={() => setSelectedFlower(null)} 
+    <FlowerInfo  flower={selectedFlower} onClose={() => setSelectedFlower(null)} />
+
+
+    <Canvas 
+        shadows 
+        // 1. Artistic dark background
+        camera={{ position: [0, 10, -90], fov: 60 }}
+        // 2. Tone Mapping prevents the "White Screen" problem
+        gl={{ 
+          toneMapping: THREE.ACESFilmicToneMapping, 
+          toneMappingExposure: 1.3 
+        }}
+      >
+      {/* 2. Soft Ambient Light (Keep it low for contrast) */}
+      <ambientLight intensity={0.2} />
+      <Environment preset="forest" />
+      
+      {/* 3. The "Sun" - Positioned above the dome hole */}
+      <directionalLight
+      position={[10,80,10]}
+       intensity={1.5}
+       castShadow
+       shadow-mapSize={[2048, 2048]}>
+        <orthographicCamera
+          attach="shadow-camera"
+          args={[-100, 100, 100, -100, 1, 200]}
+        />
+      </directionalLight>
+
+      {/* 4. The Sunlight Beam effect */}
+      <spotLight
+        position={[0, 45, 0]}
+        angle={0.3}
+        penumbra={1}
+        intensity={10}
+        color="#fffceb" // Warm sunlight
+        castShadow
       />
-
-
-    <Canvas
-      dpr={1}
-      frameloop="always"
-      // shadows={false}
-      // gl={{
-      //   antialias: false,
-      //   powerPreference: 'low-power',
-      //   preserveDrawingBuffer: false,
-      // }}
-      camera={{ position: [0, 10, -90], fov: 60 }}
-      style={{
-        width: '100vw',
-        height: '100vh',
-      }}
-    >
-      {/* LIGHTS */}
-      <ambientLight intensity={3} />
-      <directionalLight position={[-1, 10, 5]} intensity={15} />
-
-      {/* 2. ADD THESE COMPONENTS HERE */}
-      <KeyboardMovement onSelectFlower={(file) => setSelectedFlower(flowerData[file])} playerRef={playerRef} />
-      <PointerLockControls />
-
+  <KeyboardMovement onSelectFlower={(file) => setSelectedFlower(flowerData[file])} playerRef={playerRef} />
+  <PointerLockControls />
       {/* PHASE 1 — ENVIRONMENT */}
       <Suspense fallback={null}>
         <GLB url="/models/Walls.glb" />
@@ -88,6 +101,8 @@ export default function App() {
           <GLB url="/models/Cadres.glb" />
           <GLB url="/models/Lampe.glb" /> 
           <GLB url="/flowers/Room2-Flower4-Deco.glb" />
+          <GLB url="/flowers/Room3-Flower6Deco.glb" />
+          <GLB url="/flowers/Room4-Flower10-deco.glb" />
         </Suspense>
       )}
 
@@ -106,7 +121,11 @@ export default function App() {
         </Suspense>
       )}
 
-      {/* <OrbitControls enableDamping target={[0,5,10]} /> */}
+      {/* 3. POST-PROCESSING (The "Glow") */}
+        <EffectComposer>
+          <Bloom luminanceThreshold={2} intensity={2} mipmapBlur />
+          <Vignette darkness={0.3} />
+        </EffectComposer>
 
     </Canvas>
   </>

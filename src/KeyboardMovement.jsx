@@ -8,7 +8,7 @@ const floorRaycaster = new THREE.Raycaster()
 export function KeyboardMovement({ onSelectFlower, playerRef }) {
   const { camera, raycaster, scene } = useThree()
   const keys = useRef({})
-  const speed = 0.18 // Adjust walking speed here
+  const speed = 0.4 // Adjust walking speed here
   const playerHeight = 10 // Height of the camera eyes from the floor
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 import { useGLTF } from '@react-three/drei'
-import { useEffect, useMemo } from 'react'
+import { useEffect } from 'react'
 
 export default function GLB({ url, onClick }) {
   const { scene } = useGLTF(url)
@@ -7,51 +7,20 @@ export default function GLB({ url, onClick }) {
   useEffect(() => {
     scene.traverse((obj) => {
       if (obj.isMesh) {
-        // PERFORMANCE OPTIMIZATIONS
-        obj.castShadow = false
-        obj.receiveShadow = false
+        // Enable shadows for depth
+        obj.castShadow = true
+        obj.receiveShadow = true
+        obj.matrixAutoUpdate = true 
 
-        // Freeze transforms (static objects)
-        obj.matrixAutoUpdate = false
-        obj.updateMatrix()
-
-        // Reduce material cost
         if (obj.material) {
-          obj.material.metalness = 0
-          obj.material.roughness = 1
-
-          // Disable heavy maps if not needed
-          obj.material.normalMap = null
-          obj.material.roughnessMap = null
-          obj.material.metalnessMap = null
+          // Matte materials don't create the "ugly" white glow
+          obj.material.roughness = 0.8
+          obj.material.metalness = 0.1
+          obj.material.envMapIntensity = 0.2 
         }
       }
     })
   }, [scene])
 
-  // Dispose when unmounted (prevents GPU memory leaks)
-  useEffect(() => {
-    return () => {
-      scene.traverse((obj) => {
-        if (obj.geometry) obj.geometry.dispose()
-        if (obj.material) {
-          if (Array.isArray(obj.material)) {
-            obj.material.forEach((m) => m.dispose())
-          } else {
-            obj.material.dispose()
-          }
-        }
-      })
-    }
-  }, [scene])
-
-  return (<primitive object={scene} 
-  onClick={(e) => {
-    e.stopPropagation();
-    if(onClick) onClick();
-  }}
-  />)
+  return <primitive object={scene} onClick={onClick} />
 }
-
-// ❌ DO NOT preload everything
-// useGLTF.preload('/models/scene.glb') ← only preload critical assets if needed

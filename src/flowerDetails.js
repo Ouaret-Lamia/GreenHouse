@@ -9,6 +9,16 @@ export const flowerData = {
     info: "Red roses have symbolized deep love and romance for centuries.",
     fact: "Roses have been cultivated for more than 5,000 years."
   },
+  "Room3-RedRose.glb": {
+    name: "Red Rose",
+    scientificName: "Rosa rubiginosa",
+    family: "Rosaceae",
+    origin: "Asia",
+    language: "Enduring love, passion, and respect",
+    care: "Needs 6–8 hours of sunlight and well-drained soil.",
+    info: "Red roses have symbolized deep love and romance for centuries.",
+    fact: "Roses have been cultivated for more than 5,000 years."
+  },
 
   "Room4-RedRose.glb": {
     name: "Red Rose",
@@ -99,7 +109,16 @@ export const flowerData = {
     info: "Often used in weddings and formal arrangements.",
     fact: "Despite the name, it is not a true lily."
   },
-
+  "Room3-CalaLilyO.glb": {
+    name: "Calla Lily",
+    scientificName: "Zantedeschia",
+    family: "Araceae",
+    origin: "South Africa",
+    language: "Purity and elegance",
+    care: "Moist soil and indirect sunlight.",
+    info: "Often used in weddings and formal arrangements.",
+    fact: "Despite the name, it is not a true lily."
+  },
   "Room3-CurryTrees.glb": {
     name: "Curry Tree",
     scientificName: "Murraya koenigii",
@@ -124,7 +143,6 @@ export const flowerData = {
 
   "Room3-Pilea.glb": {
     name: "Pilea Peperomioides",
-    scientificName: "Pilea peperomioides",
     family: "Urticaceae",
     origin: "China",
     language: "Good fortune and prosperity",
@@ -165,6 +183,18 @@ export const flowerData = {
     info: "Marigolds are often used in cultural ceremonies.",
     fact: "They naturally repel garden pests."
   },
+  
+  "Room4-Marigold.glb": {
+    name: "Marigold",
+    scientificName: "Tagetes",
+    family: "Asteraceae",
+    origin: "Mexico",
+    language: "Passion and creativity",
+    care: "Full sun, drought tolerant.",
+    info: "Marigolds are often used in cultural ceremonies.",
+    fact: "They naturally repel garden pests."
+  },
+
 
   "Room4-Rosebud.glb": {
     name: "Rosebud",
@@ -338,5 +368,71 @@ export const flowerData = {
     care: "Full sun, regular watering, well-drained soil.",
     info: "Pompom chrysanthemums have dense, spherical blooms.",
     fact: "Chrysanthemums are symbols of long life in many cultures."
-  }
+  },
+    "Room3-CrocusSativus.glb": {
+    name: "Saffron Crocus",
+    scientificName: "Crocus sativus",
+    family: "Iridaceae",
+    origin: "Greece",
+    language: "Joy, abundance, and prosperity",
+    care: "Full sun, well-drained soil, dry summers.",
+    info: "This flower produces saffron, the world’s most valuable spice.",
+    fact: "Around 150 flowers are needed to produce one gram of saffron."
+  },
+
+  "Room3-Gerbera.glb": {
+    name: "Gerbera Daisy",
+    scientificName: "Gerbera jamesonii",
+    family: "Asteraceae",
+    origin: "South Africa",
+    language: "Cheerfulness and innocence",
+    care: "Bright light, moderate watering, well-drained soil.",
+    info: "Gerbera daisies are popular for their vivid colors and symmetry.",
+    fact: "They are among the most used flowers in the floral industry."
+  },
+
+  "Room3-GerberaDaisies.glb": {
+    name: "Gerbera Daisies",
+    scientificName: "Gerbera jamesonii",
+    family: "Asteraceae",
+    origin: "South Africa",
+    language: "Happiness and positivity",
+    care: "Full sun to partial shade, regular watering.",
+    info: "These flowers symbolize joy and are often used in celebrations.",
+    fact: "Gerberas can improve indoor air quality."
+  },
+
+  "Room3-Lilium.glb": {
+    name: "Lily",
+    scientificName: "Lilium",
+    family: "Liliaceae",
+    origin: "Northern Hemisphere",
+    language: "Purity and renewal",
+    care: "Full sun to partial shade, moist well-drained soil.",
+    info: "Lilies are known for their large, fragrant trumpet-shaped blooms.",
+    fact: "Some lily species are toxic to cats."
+  },
+
+  "Room3-Sampaguita.glb": {
+    name: "Sampaguita (Jasmine)",
+    scientificName: "Jasminum sambac",
+    family: "Oleaceae",
+    origin: "South and Southeast Asia",
+    language: "Purity, humility, and devotion",
+    care: "Full sun, regular watering, warm temperatures.",
+    info: "Sampaguita is the national flower of the Philippines.",
+    fact: "Its fragrance is strongest at night."
+  },
+  "Room4-Flamingo.glb": {
+  name: "Flamingo Flower",
+  scientificName: "Anthurium andraeanum",
+  family: "Araceae",
+  origin: "Central and South America",
+  language: "Hospitality and happiness",
+  care: "Bright indirect light, high humidity, well-drained soil.",
+  info: "Known for its glossy heart-shaped spathes and long-lasting blooms.",
+  fact: "Often mistaken for a flower, the colorful part is actually a modified leaf."
+}
+
+
 };
