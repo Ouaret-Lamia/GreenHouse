@@ -17,8 +17,8 @@ export default function App() {
   const playerRef = useRef()
   // Load in phases (VERY IMPORTANT)
   useEffect(() => {
-    const t1 = setTimeout(() => setLoadStructure(true), 1000)
-    const t2 = setTimeout(() => setLoadDecor(true), 2500)
+    const t1 = setTimeout(() => setLoadStructure(true), 2000)
+    const t2 = setTimeout(() => setLoadDecor(true), 5000)
 
     return () => {
       clearTimeout(t1)
@@ -49,13 +49,7 @@ export default function App() {
 
     <Canvas 
         shadows 
-        // 1. Artistic dark background
         camera={{ position: [0, 10, -90], fov: 60 }}
-        // 2. Tone Mapping prevents the "White Screen" problem
-        gl={{ 
-          toneMapping: THREE.ACESFilmicToneMapping, 
-          toneMappingExposure: 1.3 
-        }}
       >
       {/* 2. Soft Ambient Light (Keep it low for contrast) */}
       <ambientLight intensity={0.2} />
@@ -72,29 +66,19 @@ export default function App() {
           args={[-100, 100, 100, -100, 1, 200]}
         />
       </directionalLight>
-
-      {/* 4. The Sunlight Beam effect */}
-      <spotLight
-        position={[0, 45, 0]}
-        angle={0.3}
-        penumbra={1}
-        intensity={10}
-        color="#fffceb" // Warm sunlight
-        castShadow
-      />
   <KeyboardMovement onSelectFlower={(file) => setSelectedFlower(flowerData[file])} playerRef={playerRef} />
   <PointerLockControls />
       {/* PHASE 1 — ENVIRONMENT */}
       <Suspense fallback={null}>
         <GLB url="/models/Walls.glb" />
+        <GLB url="/models/Stairs.glb" />
+        <GLB url="/models/Tree.glb" />
       </Suspense>
 
       {/* PHASE 2 — STRUCTURE  */}
       {loadStructure && (
         <Suspense fallback={null}>
-          <GLB url="/models/Stairs.glb" />
           <GLB url="/models/etagers-v1.glb" />
-          <GLB url="/models/Tree.glb" />
           <GLB url="/models/Banc.glb" />
           <GLB url="/models/PlanteDeco.glb" />
           <GLB url="/models/Cadres.glb" />
@@ -121,13 +105,6 @@ export default function App() {
            
         </Suspense>
       )}
-
-      {/* 3. POST-PROCESSING (The "Glow") */}
-        <EffectComposer>
-          <Bloom luminanceThreshold={2} intensity={2} mipmapBlur />
-          <Vignette darkness={0.3} />
-        </EffectComposer>
-
     </Canvas>
   </>
   )

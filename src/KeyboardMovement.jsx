@@ -9,7 +9,7 @@ export function KeyboardMovement({ onSelectFlower, playerRef }) {
   const { camera, raycaster, scene } = useThree()
   const keys = useRef({})
   const speed = 0.4 
-  const playerHeight = 13 
+  const playerHeight = 10 
 
   useEffect(() => {
     // 1. INPUT LISTENERS
